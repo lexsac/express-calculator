@@ -1,4 +1,5 @@
 function mean(arr) {
+    if(arr.length === 0) return 0;
     let sum = arr.reduce((acc, val) => {
         return acc + val;
     }, 0);
@@ -9,16 +10,15 @@ function mean(arr) {
 
 function median(arr) {
     let sortedArr = arr.sort();
+    let middleIdx = Math.floor(sortedArr.length / 2);
     let median;
-    if (sortedArr.length % 2 === 0) {
-        let firstNum = sortedArr[(sortedArr.length / 2) - 1];
-        let secondNum = sortedArr[(sortedArr.length / 2)];
-        median = (firstNum + secondNum) / 2;
+  
+    if (arr.length % 2 === 0) {
+      median = (sortedArr[middleIdx] + sortedArr[middleIdx - 1]) / 2;
     } else {
-        let modeIdx = Math.floor(sortedArr.length / 2);
-        median = sortedArr[modeIdx];
+      median = sortedArr[middleIdx];
     }
-    return median;
+    return median
 }
 
 function mode(arr) {
@@ -42,7 +42,7 @@ function mode(arr) {
       }
     }
 
-    return mostFrequent;
+    return +mostFrequent;
 };
 
 function convertAndValidateNumsArray(numsAsStrings) {
